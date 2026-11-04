@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Stock Price Prediction</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>📈 Stock Price Prediction</h1>
+            <p>Machine Learning Based Stock Price Prediction System</p>
+        </header>
+
+        <div class="card">
+
+            <h2>Enter Stock Information</h2>
+
+            <form action="/predict" method="POST">
+
+                <div class="input-group">
+                    <label>Open Price</label>
+                    <input type="number"
+                           step="any"
+                           name="open_price"
+                           placeholder="Example: 2450"
+                           required>
+                </div>
+
+                <div class="input-group">
+                    <label>High Price</label>
+                    <input type="number"
+                           step="any"
+                           name="high_price"
+                           placeholder="Example: 2480"
+                           required>
+                </div>
+
+                <div class="input-group">
+                    <label>Low Price</label>
+                    <input type="number"
+                           step="any"
+                           name="low_price"
+                           placeholder="Example: 2430"
+                           required>
+                </div>
+
+                <div class="input-group">
+                    <label>Volume</label>
+                    <input type="number"
+                           step="any"
+                           name="volume"
+                           placeholder="Example: 125000"
+                           required>
+                </div>
+
+                <div class="input-group">
+                    <label>Previous Close</label>
+                    <input type="number"
+                           step="any"
+                           name="previous_close"
+                           placeholder="Example: 2460"
+                           required>
+                </div>
+
+                <button type="submit">
+                    Predict Stock Price
+                </button>
+
+            </form>
+
+            {% if prediction %}
+            <div class="result">
+                <h2>Predicted Stock Price</h2>
+                <div class="price">
+                    ₹{{ prediction }}
+                </div>
+                <p>Predicted using Linear Regression</p>
+            </div>
+            {% endif %}
+
+            {% if error %}
+            <div class="error">
+                {{ error }}
+            </div>
+            {% endif %}
+
+        </div>
+
+        <footer>
+            <p>Stock Price Prediction | Machine Learning Project</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
